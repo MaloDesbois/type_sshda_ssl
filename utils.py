@@ -256,7 +256,9 @@ def selection(data,nbr,role,nbr_ssl=200): # role peut être "source" ou "target"
                 indices_tl = indices[:nbr_ssl]
                 indices_ul1 = indices[nbr_ssl:nbr_ssl+nbr//2]
                 indices_ul2 = indices[nbr_ssl:]
-                
+
+                selected_data_tl.append(values[indices_tl])
+                selected_labels_tl.append(labels[indices_tl])
                 selected_data_ul1.append(values[indices_ul1])
                 selected_labels_ul1.append(labels[indices_ul1])
                 selected_data_ul2.append(values[indices])
