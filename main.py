@@ -73,8 +73,9 @@ for n in range(n_epochs):
             y_batch = y_batch.to(device)
             dom_batch = dom_batch.to(device)
             
-            i_target = [ k for k in range(len(dom_batch)) if  k==max(dom_batch)]
-            i_source = [ k for k in range(len(dom_batch)) if k != max(dom_batch)]
+            i_target = [ k for k in range(len(dom_batch)) if  dom_batch[k]==max(dom_batch)]
+            
+            i_source = [ k for k in range(len(dom_batch)) if dom_batch[k] != max(dom_batch)]
             
             #x_batch,m_batch = transformation.augment(x_batch,m_batch)
             optimizer.zero_grad()
