@@ -73,9 +73,8 @@ for n in range(n_epochs):
             y_batch = y_batch.to(device)
             dom_batch = dom_batch.to(device)
             
-            i_target = [ k for k in range(len(dom_batch)) if  dom_batch[k]==max(dom_batch)]
-            
-            i_source = [ k for k in range(len(dom_batch)) if dom_batch[k] != max(dom_batch)]
+            i_target = torch.where(dom_batch==max(dom_batch))          
+            i_source = torch.where(dom_batch!=max(dom_batch))
             
             #x_batch,m_batch = transformation.augment(x_batch,m_batch)
             optimizer.zero_grad()
@@ -122,8 +121,8 @@ for n in range(n_epochs):
             y_batch = y_batch.to(device)
             dom_batch = dom_batch.to(device)
             
-            i_l = [k for k in range(len(y_batch)) if y_batch[k] != -1 ]
-            i_ul = [k for k in range(len(y_batch)) if y_batch[k] == -1 ]
+            i_l = torch.where(y_batch != -1)
+            i_ul = torch.where(y_batch == -1)
             
             
             lab_count.append(y_batch_info)
@@ -208,8 +207,8 @@ for n in range(n_epochs):
             y_batch = y_batch.to(device)
             dom_batch = dom_batch.to(device)
             
-            i_l = [k for k in range(len(y_batch)) if y_batch[k] != -1 ]
-            i_ul = [k for k in range(len(y_batch)) if y_batch[k] == -1 ]
+            i_l = torch.where(y_batch != -1)
+            i_ul = torch.where(y_batch == -1)
             
             lab_count.append(y_batch_info)
            
